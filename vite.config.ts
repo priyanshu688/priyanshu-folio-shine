@@ -19,6 +19,13 @@ const aliasServerOutput = () => ({
     const src = join(dir, "index.js");
     const dest = join(dir, "server.js");
     if (existsSync(src) && !existsSync(dest)) copyFileSync(src, dest);
+
+    // SPA mode prerenders the shell as `_shell.html`; static hosts (Netlify,
+    // Vercel, GitHub Pages) expect `index.html` as the entry document.
+    const clientDir = join(process.cwd(), "dist", "client");
+    const shell = join(clientDir, "_shell.html");
+    const indexHtml = join(clientDir, "index.html");
+    if (existsSync(shell) && !existsSync(indexHtml)) copyFileSync(shell, indexHtml);
   },
 });
 

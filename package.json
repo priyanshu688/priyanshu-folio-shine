@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
+    "build": "vite build && node -e \"import('node:fs').then(({copyFileSync,existsSync})=>{const s='dist/client/_shell.html',d='dist/client/index.html';if(existsSync(s)&&!existsSync(d))copyFileSync(s,d)})\"",
+    "build:dev": "vite build --mode development && node -e \"import('node:fs').then(({copyFileSync,existsSync})=>{const s='dist/client/_shell.html',d='dist/client/index.html';if(existsSync(s)&&!existsSync(d))copyFileSync(s,d)})\"",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write ."
