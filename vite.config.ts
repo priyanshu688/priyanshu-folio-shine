@@ -7,9 +7,6 @@ import { join } from "node:path";
 // `index.js` regardless of entry name, so we copy it to the expected name.
 const aliasServerOutput = () => ({
   name: "alias-server-output",
-  applyToEnvironment(env: { name: string }) {
-    return env.name === "server";
-  },
   closeBundle() {
     const dir = join(process.cwd(), "dist", "server");
     const src = join(dir, "index.js");
